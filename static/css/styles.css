@@ -23,58 +23,31 @@ body{
     grid-template-columns: auto auto auto auto;
     grid-template-areas: 'header header header header'
                         'form form form form'
-                        'head1 head2 head3 head4'
-                        'task comments edit delete';
+                        'tasks tasks tasks tasks';
     justify-content: center;
     align-items: baseline;
 }
 
-.grid-container > .header, .form, .task-container, 
-.comments, .img-edit, .img-delete, .head1, .head2, .head3, .head4{
+.grid-container > .header, .form, .task-container{
     padding: 10px;
     font-family: 'Architects Daughter', cursive;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
     color: #03C4A1;
-    border: 1px solid black;
 }
 
-.grid-container > .header, .form {
-    border: none;
-}
-
-.grid-container > .head1 > label, .head2 > label, .head3 > label, .head4 > label  {
-    font-size: 30px;
-    color: #9FD8DF;
-    border-bottom: 1px solid #FFD369;
-}
-
-.header{grid-area: header;}
-.form{grid-area: form;}
-.task-container{grid-area: task;}
-.comments{grid-area: comments;}
-.img-edit{grid-area: edit;}
-.img-delete{grid-area: delete;}
-
-.head1{grid-area: head1;} 
-.head2{grid-area: head2;} 
-.head3{grid-area: head3;} 
-.head4{grid-area: head4;}
-
-.grid-container > form > input{
-    font-family: 'Space Mono', monospace;
-    font-size: 16px;
-    margin: 10px;
+table {
     text-align: center;
+    width: 100%;
 }
 
-.grid-container > .task-container, .comments, .img-edit, .img-delete{
-    display:flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content:space-between;
-    padding: 10px;
+table > thead {
+    font-size: 26px;
+    color: #9FD8DF;
+}
+
+table > tbody > tr {
     font-family: 'Architects Daughter', cursive;
     font-size: 20px;
     font-weight: bold;
@@ -82,11 +55,22 @@ body{
 }
 
 
-.grid-container > .img-edit > img, .img-delete > img {
+table > tbody > tr > td > img {
     max-width: 32px;
     max-height: 32px;
 }
 
+.header{grid-area: header;}
+.form{grid-area: form;}
+.table-tasks{grid-area: tasks;}
+
+
+.grid-container > form > input{
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    margin: 10px;
+    text-align: center;
+}
 
 input[type="checkbox"]{
     width:25px;
