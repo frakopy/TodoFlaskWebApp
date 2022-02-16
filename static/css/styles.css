@@ -86,7 +86,6 @@ body{
 .grid-container > .img-edit > img, .img-delete > img {
     max-width: 32px;
     max-height: 32px;
-    /* padding-bottom: 10px; */
 }
 
 
