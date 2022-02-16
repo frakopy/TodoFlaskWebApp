@@ -4,7 +4,6 @@ body{
     position:relative;
 }
 
-
 .fond-image{
     background: linear-gradient(rgba(5, 7, 12, 0.50), 
     rgba(5, 7, 12, 0.50)), url("/static/img/fondImage.jpg"); 
