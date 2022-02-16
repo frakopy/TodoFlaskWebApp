@@ -29,11 +29,11 @@ form.addEventListener('submit', (event) => {
 
     sendData(fetchSettings).then(jsonresponse => {
         if(jsonresponse.code_response == 200) {
-            labelNotify.textContent = 'The task was successfully added'
+            labelNotify.textContent = 'The task was successfully added...'
         }else{
             alert('UPSS!!!, Something went wrong')
         }
 
-        setTimeout(() => {window.location}, 3000)
+        setTimeout(() => {window.location = window.location}, 1000)
     })
 })
