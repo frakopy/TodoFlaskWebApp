@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoApp_By_FrancoDev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+    <div class="fond-image"></div>
+
+    <div class="grid-container">
+        <header class="header">
+            <h1>TO DO APP BY FRANCO DEV</h1>
+        </header>
+
+        <form class="form">
+            <input type="text" class='task' id="task" placeholder="Write Your Task Here">
+            <input type="text" class='coment-task' id="coment-task" placeholder="Comments...">
+            <button class="btn-task" id="btn-task">Add Task</button>
+        </form>
+
+        <div class="head1">
+            <label>Task Name:</label> 
+        </div>
+        <div class="head2">
+            <label>Task Comments:</label>
+        </div>
+        <div class="head3">
+            <label>Edit:</label>
+        </div>
+        <div class="head4">
+            <label>Delete:</label>
+        </div>
+
+        <div class="task-container">
+            <div>
+                <input type="checkbox" name="task-1" value="pending">
+                <label for="task-1">tarea 1</label>    
+            </div>
+            
+            <div>
+                <input type="checkbox" name="task-2" value="pending">
+                <label for="task-2">tarea 2</label>
+            </div>
+            
+            <div>
+                <input type="checkbox" name="task-3" value="pending">
+                <label for="task-3">tarea 3</label>
+            </div>
+            
+        </div>
+
+        <div class="comments">
+            <label>comentario tarea 1</label>
+            <label>comentario tarea 3</label>
+            <label>comentario tarea 3</label>
+        </div>
+        
+        <div class="img-edit">
+            <img src="{{url_for('static', filename='img/edit.png')}}" alt="edit-image">
+            <img src="{{url_for('static', filename='img/edit.png')}}" alt="edit-image">
+            <img src="{{url_for('static', filename='img/edit.png')}}" alt="edit-image">
+        </div>
+        
+        <div class="img-delete">
+            <img src="{{url_for('static', filename='img/delete.png')}}" alt="delete-image">
+            <img src="{{url_for('static', filename='img/delete.png')}}" alt="delete-image">
+            <img src="{{url_for('static', filename='img/delete.png')}}" alt="delete-image">
+        </div>
+
+    </div>
+</body>
+</html>
