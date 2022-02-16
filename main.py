@@ -26,6 +26,14 @@ def index():
     return render_template('index.html', tasksData = tasks_data)
 
 
+@app.route('/add_new_task', methods=['POST'])
+def add_task():
+    task_data = request.json
+    task_name = task_data['taskName']
+    task_comment = task_data['taskComment']
+    result_code = db.add_task(task_name,task_comment ,mysql)
+    return jsonify(code_response = result_code)
+
 @app.route('/data_tasks')
 def data_tasks():
     data  = db.get_tasks(mysql)

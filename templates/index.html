@@ -14,11 +14,12 @@
     <div class="grid-container">
         <header class="header">
             <h1>TO DO APP BY FRANCO DEV</h1>
+            <label id="notify"></label>
         </header>
 
-        <form class="form">
-            <input type="text" class='task' id="task" placeholder="Write Your Task Here">
-            <input type="text" class='coment-task' id="coment-task" placeholder="Comments...">
+        <form class="form" id="form">
+            <input type="text" class='task' name="task-name" placeholder="Write Your Task Here">
+            <input type="text" class='coment-task' name="task-comments" placeholder="Comments...">
             <button class="btn-task" id="btn-task">Add Task</button>
         </form>
 
@@ -30,7 +31,7 @@
                     <th>Edit Task</th>
                     <th>Delete Task</th>
                 </thead>
-                <tbody>
+                <tbody id="tbody">
                     {%for task in tasksData%}
                         <tr>
                             <td>
@@ -52,5 +53,6 @@
             </table>
         </div>
     </div>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
 </body>
 </html>
