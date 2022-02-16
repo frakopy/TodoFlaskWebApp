@@ -31,55 +31,26 @@
                     <th>Delete Task</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <input type="checkbox" name="task-1" value="pending">
-                            <label for="task-1">tarea 1</label>
-                        </td>
-                        <td>
-                            <label>comentario tarea 1</label>
-                        </td>
-                        <td>
-                            <img src="{{url_for('static', filename='img/edit.png')}}" alt="edit-image">
-                        </td>
-                        <td>
-                            <img src="{{url_for('static', filename='img/delete.png')}}" alt="delete-image">
-                        </td>
-                    </tr>
+                    {%for task in tasksData%}
+                        <tr>
+                            <td>
+                                <input class="task-name" type="checkbox" name="task-{{task.id_task}}" >
+                                <label class="task-name" for="task-{{task.id_task}}" data-task-id="{{task.id_task}}">{{task.task_name}}</label>
+                            </td>
+                            <td>
+                                <label data-task-id="{{task.id_task}}">{{task.task_comment}}</label>
+                            </td>
+                            <td>
+                                <img src="{{url_for('static', filename='img/edit.png')}}" alt="edit-image" data-task-id="{{task.id_task}}">
+                            </td>
+                            <td>
+                                <img src="{{url_for('static', filename='img/delete.png')}}" alt="delete-image" data-task-id="{{task.id_task}}">
+                            </td>
+                        </tr>
+                    {%endfor%}
                 </tbody>
             </table>
         </div>
-        <!-- <div class="task-container">
-        
-            <input type="checkbox" name="task-1" value="pending">
-            <label for="task-1">tarea 1</label>    
-    
-            <input type="checkbox" name="task-2" value="pending">
-            <label for="task-2">tarea 2</label>
-
-            <input type="checkbox" name="task-3" value="pending">
-            <label for="task-3">tarea 3</label>
-        
-        </div>
-
-        <div class="comments">
-            <label>comentario tarea 1</label>
-            <label>comentario tarea 3</label>
-            <label>comentario tarea 3</label>
-        </div>
-        
-        <div class="img-edit">
-            <img src="{{url_for('static', filename='img/edit.png')}}" alt="edit-image">
-            <img src="{{url_for('static', filename='img/edit.png')}}" alt="edit-image">
-            <img src="{{url_for('static', filename='img/edit.png')}}" alt="edit-image">
-        </div>
-        
-        <div class="img-delete">
-            <img src="{{url_for('static', filename='img/delete.png')}}" alt="delete-image">
-            <img src="{{url_for('static', filename='img/delete.png')}}" alt="delete-image">
-            <img src="{{url_for('static', filename='img/delete.png')}}" alt="delete-image">
-        </div> -->
-
     </div>
 </body>
 </html>

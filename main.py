@@ -23,8 +23,7 @@ db = database()
 @app.route('/')
 def index():
     tasks_data  = db.get_tasks(mysql)
-    # return render_template('index.html', tasksData = tasks_data)
-    return render_template('index.html')
+    return render_template('index.html', tasksData = tasks_data)
 
 
 @app.route('/data_tasks')

@@ -4,7 +4,7 @@ class database():
     def get_tasks(self, mysql):
         try:
             cursor =  mysql.connection.cursor()
-            cursor.execute("SELECT task_name, task_comment FROM tasks") 
+            cursor.execute("SELECT * FROM tasks") 
             data =  cursor.fetchall()
             cursor.close()
             return data

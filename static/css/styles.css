@@ -25,10 +25,10 @@ body{
                         'form form form form'
                         'tasks tasks tasks tasks';
     justify-content: center;
-    align-items: baseline;
+    gap: 40px;
 }
 
-.grid-container > .header, .form, .task-container{
+.grid-container > .header, .form{
     padding: 10px;
     font-family: 'Architects Daughter', cursive;
     font-size: 20px;
@@ -40,14 +40,17 @@ body{
 table {
     text-align: center;
     width: 100%;
+    border-collapse: collapse;
+    border-color: #FBFFE2;
 }
+
 
 table > thead {
     font-size: 26px;
     color: #9FD8DF;
 }
 
-table > tbody > tr {
+table > tbody > tr > td{
     font-family: 'Architects Daughter', cursive;
     font-size: 20px;
     font-weight: bold;
