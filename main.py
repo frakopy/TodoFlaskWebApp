@@ -34,6 +34,13 @@ def add_task():
     result_code = db.add_task(task_name,task_comment ,mysql)
     return jsonify(code_response = result_code)
 
+@app.route('/delete_task', methods=['POST'])
+def delete_task():
+    task_data = request.json
+    task_id = task_data['taskId']
+    result_code = db.delete_task(task_id ,mysql)
+    return jsonify(code_response = result_code)
+
 @app.route('/data_tasks')
 def data_tasks():
     data  = db.get_tasks(mysql)

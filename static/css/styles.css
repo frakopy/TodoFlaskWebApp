@@ -19,17 +19,17 @@ body{
 
 .grid-container{
     display:grid;
-    grid-template-columns: auto auto auto auto;
+    height:100vh;
+    grid-auto-columns: minmax(auto, 250px);
     grid-template-areas: 'header header header header'
                         'form form form form'
                         'tasks tasks tasks tasks';
     justify-content: center;
-    gap: 40px;
     overflow-y: auto;
 }
 
 .grid-container > .header, .form{
-    padding: 10px;
+    padding: 5px;
     font-family: 'Architects Daughter', cursive;
     font-size: 20px;
     font-weight: bold;
@@ -45,7 +45,7 @@ body{
 }
 
 table {
-    text-align: center;
+    /* text-align: center; */
     width: 100%;
     border-collapse: collapse;
     border-color: #FBFFE2;
@@ -58,16 +58,25 @@ table > thead {
 }
 
 table > tbody > tr > td{
-    font-family: 'Architects Daughter', cursive;
-    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
     font-weight: bold;
     color: #E2C2B9;
+
 }
 
+
+table > tbody > tr > .comentaries, .images {
+    text-align: center;
+}
 
 table > tbody > tr > td > img {
     max-width: 32px;
     max-height: 32px;
+}
+
+table > tbody > tr:hover {
+    background: rgba(0, 87, 146, 0.3);
 }
 
 .header{grid-area: header;}
@@ -98,4 +107,39 @@ button{
     font-weight: bold;
     width:258px;
     height:45px;
+    background-color:#064663;
+    color:white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease all;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+/* Remember after is a soon of the element in this case soon of the button for that reason button has position relative and after has position abosulute and so we can say with / height 100% of his fater (button)*/
+button::after{
+    content: "";
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    transition: 0.3s ease-in-out all;
+    border-bottom: 60px solid #DA0037;
+    border-right: 30px solid transparent;
+    left: calc(-100% - 30px); /* -30px because the border right has 30px so for avoid this border enter to the element */
+
+}
+
+/* Our span tag contains the text of the boton so for get put it above after element we set it to
+z-index:2 and our after with z-index:1*/
+button span{
+    position: relative;
+    z-index: 2;
+}
+
+button:hover::after{
+    left: 0;
 }

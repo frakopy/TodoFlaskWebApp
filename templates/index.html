@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDoApp_By_FrancoDev</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Space+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Montserrat:wght@300&family=Space+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
 </head>
 <body>
@@ -20,7 +20,7 @@
         <form class="form" id="form">
             <input type="text" class='task' name="task-name" placeholder="Write Your Task Here">
             <input type="text" class='coment-task' name="task-comments" placeholder="Comments...">
-            <button class="btn-task" id="btn-task">Add Task</button>
+            <button class="btn-task" id="btn-task"><span>Add Task</span></button>
         </form>
 
         <div class="table-tasks">
@@ -33,19 +33,19 @@
                 </thead>
                 <tbody id="tbody">
                     {%for task in tasksData%}
-                        <tr>
-                            <td>
+                        <tr data-task-id="{{task.id_task}}">
+                            <td class="name-task">
                                 <input class="task-name" type="checkbox" name="task-{{task.id_task}}" >
                                 <label class="task-name" for="task-{{task.id_task}}" data-task-id="{{task.id_task}}">{{task.task_name}}</label>
                             </td>
-                            <td>
+                            <td class="comentaries">
                                 <label data-task-id="{{task.id_task}}">{{task.task_comment}}</label>
                             </td>
-                            <td>
-                                <img src="{{url_for('static', filename='img/edit.png')}}" alt="edit-image" data-task-id="{{task.id_task}}">
+                            <td class="images">
+                                <img class="edit" src="{{url_for('static', filename='img/edit.png')}}" alt="edit-image" data-task-id="{{task.id_task}}">
                             </td>
-                            <td>
-                                <img src="{{url_for('static', filename='img/delete.png')}}" alt="delete-image" data-task-id="{{task.id_task}}">
+                            <td class="images">
+                                <img class="delete" src="{{url_for('static', filename='img/delete.png')}}" alt="delete-image" data-task-id="{{task.id_task}}">
                             </td>
                         </tr>
                     {%endfor%}
