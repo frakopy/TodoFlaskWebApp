@@ -3,12 +3,22 @@
 //Define variables which contains html elements:
 const form = document.getElementById('form')
 const tbody = document.getElementById('tbody')
-const labelNotify = document.getElementById('notify')
+const h1 = document.querySelector('header > h1')
+const inputTaskName = document.getElementById('input-taskName')
+const inputTaskComment = document.getElementById('input-taskComment')
+const btnAddTask = document.getElementById('btn-task')
 
 //code for send and add tasks:
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    labelNotify.textContent = 'Adding the task...'
+    const btnAdd = document.querySelector('form > .btn-task')
+    if(btnAdd != null) {
+        console.log('The form contains the button add task')
+    }else{
+        console.log('The form do not contains the button add task')
+    }
+    h1.textContent = 'Adding the task...'
+    h1.style.color = 'White'
     const taskName = form.elements['task-name'].value
     const taskComment = form.elements['task-comments'].value
     
@@ -32,16 +42,15 @@ form.addEventListener('submit', (event) => {
     sendData(fetchSettings).then(jsonresponse => {
         if(jsonresponse.code_response == 200) {
             console.log('The task was successfully added...')
-            // labelNotify.textContent = 'The task was successfully added...'
         }else{
             alert('UPSS!!!, Something went wrong')
         }
 
-        setTimeout(() => {window.location = window.location}, 1000)
+        // window.location = window.location
     })
 })
 
-// code for delete a task:
+// function for delete a task from database:
 
 const delTask = (taskId) => {
     const data = {
@@ -62,9 +71,11 @@ const delTask = (taskId) => {
 
     sendRequest(fetchSettings).then(jsonresult => {
         if(jsonresult.code_response == 200){
-            labelNotify.textContent = 'The task was successfully deleted...' //change content for notity to the user
+            h1.textContent = 'The task was successfully deleted from DataBase'
+            h1.style.color = 'White'
             setTimeout(() => {
-                labelNotify.textContent = '' //Change the notification 1 secondo after the first change
+                h1.textContent = 'TO DO APP BY FRANCO DEV'
+                h1.style.color = '#03C4A1'
             }, 2000)
         }else{
             alert('was not possible to delete the task from DB')
@@ -73,15 +84,34 @@ const delTask = (taskId) => {
 
 }
 
+//Add event listener to tbody tag for propagate this event to all rows that are child from tbody
 tbody.addEventListener('click', (event) => {
-    const elementClassName = event.target.className
+    const elementClassName = event.target.className //Getting class name from the element that we clicked
     if(elementClassName === 'edit'){
+        //Getting task Name and comments from table
         const taskId = event.target.getAttribute('data-task-id')
+        const taskName = document.querySelector(`tbody > tr[data-task-id="${taskId}"] > td > .text-task`).textContent
+        const taskComments = document.querySelector(`tbody > tr[data-task-id="${taskId}"] > td > .comments`).textContent
+        
+        //Creating the new buttons save and cancel
+        const btnSave = document.createElement('button')
+        const btnCancel = document.createElement('button')
+        btnSave.innerHTML = '<span>Save</span>'
+        btnCancel.innerHTML = '<span>Cancel</span>'
+        //Removing button add task
+        form.removeChild(btnAddTask)
+        //Apending the 2 buttons save and cancel
+        form.appendChild(btnSave)
+        form.appendChild(btnCancel)
+        
+        //Writing the task name and tasck comments in the input boxes
+        inputTaskName.value = taskName
+        inputTaskComment.value = taskComments
     
     }else if(elementClassName === 'delete'){
         const taskId = event.target.getAttribute('data-task-id')
         const trToDelete = document.querySelector(`tbody > tr[data-task-id="${taskId}"]`)
-        tbody.removeChild(trToDelete)
-        delTask(taskId)
+        tbody.removeChild(trToDelete) //Remove row task from DOM
+        delTask(taskId) //Call function for remove task from DB
     }
 })
