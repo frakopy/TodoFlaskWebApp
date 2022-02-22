@@ -50,10 +50,6 @@ def update_task():
     result_code = db.update_task(task_name, task_comment, task_id, mysql)
     return jsonify(code_response = result_code)
 
-@app.route('/data_tasks')
-def data_tasks():
-    data  = db.get_tasks(mysql)
-    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port = 8089)
