@@ -179,7 +179,7 @@ const delTask = (idTask) => {
 
     sendRequest(fetchSettings).then(jsonresult => {
         if(jsonresult.code_response == 200){
-            changeHeaderText('The task was successfully deleted from DataBase')
+            changeHeaderText('Task deleted from DataBase')
         }else{
             alert('was not possible to delete the task from DB')
         }
