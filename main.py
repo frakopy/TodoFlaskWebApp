@@ -41,6 +41,15 @@ def delete_task():
     result_code = db.delete_task(task_id ,mysql)
     return jsonify(code_response = result_code)
 
+@app.route('/update_task', methods=['POST'])
+def update_task():
+    data_to_update =  request.json
+    task_name = data_to_update['taskName']
+    task_comment = data_to_update['taskComment']
+    task_id = data_to_update['taskId']
+    result_code = db.update_task(task_name, task_comment, task_id, mysql)
+    return jsonify(code_response = result_code)
+
 @app.route('/data_tasks')
 def data_tasks():
     data  = db.get_tasks(mysql)
