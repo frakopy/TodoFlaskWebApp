@@ -49,6 +49,11 @@ body{
     color: white;
 }
 
+.table-tasks {
+    width: 100%;
+    overflow: auto
+}
+
 table {
     border-collapse: collapse;
     border-color: #FBFFE2;
