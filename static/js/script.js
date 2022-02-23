@@ -215,6 +215,9 @@ tbody.addEventListener('click', (event) => {
         inputTaskName.value = taskName
         inputTaskComment.value = taskComments
     
+        //Setting focus to the input where we are going to write the task name 
+        inputTaskName.focus()
+
     }else if(elementClassName === 'delete'){
         const trToDelete = document.querySelector(`tbody > tr[data-task-id="${idTask}"]`)
         tbody.removeChild(trToDelete) //Remove row task from DOM
