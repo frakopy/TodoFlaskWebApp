@@ -223,13 +223,3 @@ tbody.addEventListener('click', (event) => {
         delTask(idTask) //Call function for remove task from DB
     }
 })
-
-const pty = ''
-const pty = ''
-const pty = ''
-const pty = ''
-const pty = ''
-const pty = ''
-const pty = ''
-const pty = ''
-const pty = ''
