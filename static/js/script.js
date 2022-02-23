@@ -88,7 +88,7 @@ form.addEventListener('submit', (e) => {
         taskComments.textContent = textTaskComment
 
         //Change temporally the background of the row that was modified
-        row.style.background = '#07004D'
+        row.style.background = '#FDF0D5'
         
         //Removing save and cancel buttons
         form.removeChild(btnSave)
