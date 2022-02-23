@@ -10,7 +10,6 @@ const btnAddTask = document.getElementById('btn-task')
 
 let idTask = ''
 
-
 const changeHeaderText = (text) => {
     h1.textContent = text
     h1.style.color = 'White'
@@ -224,3 +223,13 @@ tbody.addEventListener('click', (event) => {
         delTask(idTask) //Call function for remove task from DB
     }
 })
+
+const pty = ''
+const pty = ''
+const pty = ''
+const pty = ''
+const pty = ''
+const pty = ''
+const pty = ''
+const pty = ''
+const pty = ''
