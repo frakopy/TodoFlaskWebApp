@@ -153,7 +153,6 @@ form.addEventListener('submit', (e) => {
 })
 
 // function for delete a task from database:
-
 const delTask = (idTask) => {
     const data = {
         taskId: idTask
@@ -185,6 +184,40 @@ const delTask = (idTask) => {
     })
 
 }
+
+// function for update task completed value in database:
+const setCompletedTaskValue = (taskCompleted, idTask) => {
+    const data = {
+        taskCompletedValue : taskCompleted,
+        taskId : idTask
+    }
+
+    const fetchSettings = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {"content-type": "application/json; charset=UTF-8"}
+    }
+    
+    const sendRequest = async (fetchSettings) => {
+        try {
+            const result = await fetch('/set_completed_task', fetchSettings)
+            const jsonResult =  result.json()
+            return jsonResult
+        }catch(error) {
+            return error
+        }
+    }
+
+    sendRequest(fetchSettings).then(jsonResult =>{
+        if(jsonResult.code_response == 200){
+            changeHeaderText('The task state changed in the DB')
+        }else{
+            alert('Ups something went wrong...')
+        }
+    })
+
+}
+
 
 //Add event listener to tbody tag for propagate this event to all rows that are child from tbody
 tbody.addEventListener('click', (event) => {
@@ -221,5 +254,17 @@ tbody.addEventListener('click', (event) => {
         const trToDelete = document.querySelector(`tbody > tr[data-task-id="${idTask}"]`)
         tbody.removeChild(trToDelete) //Remove row task from DOM
         delTask(idTask) //Call function for remove task from DB
+    
+    }else if(elementClassName.includes('input-checkbox')){
+        const inputChecked = event.target.checked
+        if(inputChecked){
+            console.log('Send the request to data base')
+            const taskCompleted = 'yes'
+            setCompletedTaskValue(taskCompleted, idTask)
+        }else{
+            console.log('The input box is not checked')
+            const taskCompleted = 'no'
+            setCompletedTaskValue(taskCompleted, idTask)
+        }
     }
 })

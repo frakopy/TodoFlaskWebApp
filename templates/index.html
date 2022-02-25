@@ -34,7 +34,11 @@
                     {%for task in tasksData%}
                         <tr data-task-id="{{task.id_task}}">
                             <td class="name-task">
-                                <input class="task-name" type="checkbox" name="task-{{task.id_task}}" >
+                                {% if task.task_completed == 'yes' %}
+                                    <input class="task-name input-checkbox" type="checkbox" name="task-{{task.id_task}}" data-task-id="{{task.id_task}}" checked>
+                                {% else %}
+                                    <input class="task-name input-checkbox" type="checkbox" name="task-{{task.id_task}}" data-task-id="{{task.id_task}}">
+                                {% endif %}
                                 <label class="task-name text-task" for="task-{{task.id_task}}" data-task-id="{{task.id_task}}">{{task.task_name}}</label>
                             </td>
                             <td class="comentaries">

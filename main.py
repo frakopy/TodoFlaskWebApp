@@ -50,6 +50,14 @@ def update_task():
     result_code = db.update_task(task_name, task_comment, task_id, mysql)
     return jsonify(code_response = result_code)
 
+@app.route('/set_completed_task', methods=['POST'])
+def set_completed_task():
+    data_to_update =  request.json
+    task_completed_value = data_to_update['taskCompletedValue']
+    task_id = data_to_update['taskId']
+    result_code = db.set_completed_task(task_completed_value, task_id, mysql)
+    return jsonify(code_response = result_code)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port = 8089)

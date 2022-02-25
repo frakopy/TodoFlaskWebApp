@@ -44,3 +44,14 @@ class database():
         except Exception as e:
             print(e)
             return 600
+    
+    def set_completed_task(self, task_completed_value, task_id, mysql):
+        try:
+            cursor =  mysql.connection.cursor()
+            cursor.execute("UPDATE tasks SET task_completed='{}' WHERE id_task = '{}'".format(task_completed_value, task_id)) 
+            mysql.connection.commit()
+            cursor.close()
+            return 200
+        except Exception as e:
+            print(e)
+            return 600
