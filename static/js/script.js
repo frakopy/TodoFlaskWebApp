@@ -31,44 +31,51 @@ form.addEventListener('submit', (e) => {
     const BtnId = e.submitter.getAttribute('id') 
     
     if(BtnId === 'btn-task') {
-
-        //Changing header text for notify the user
-        changeHeaderText('Adding the task...')
     
         const taskName = form.elements['task-name'].value
         const taskComment = form.elements['task-comments'].value
         
-        const dataToSend = {
-            taskName: taskName,
-            taskComment: taskComment
-        }
-    
-        const fetchSettings = {
-            method : 'POST',
-            body: JSON.stringify(dataToSend),
-            headers: {"content-type": "application/json; charset=UTF-8"}
-        }
-    
-        const sendData = async (fetchSettings) => {
-            try{
-                const response = await fetch('/add_new_task', fetchSettings)
-                const jsonresponse = await response.json()
-                return jsonresponse
-            }catch(error) {
-                return error
-            }
+        if(taskName.length === 0) {
+            inputTaskName.style.color = 'red'
+            inputTaskName.value = 'This element can not be empty, please write your task here'
+        }else{
+
+            //Changing header text for notify the user
+            changeHeaderText('Adding the task...')
             
-        }
-    
-        sendData(fetchSettings).then(result => {
-            if(result.code_response == 200) {
-                console.log('The task was successfully added...')
-            }else{
-                alert('UPSS!!!, Something went wrong')
+            const dataToSend = {
+                taskName: taskName,
+                taskComment: taskComment
             }
-    
-            window.location = window.location
-        })
+        
+            const fetchSettings = {
+                method : 'POST',
+                body: JSON.stringify(dataToSend),
+                headers: {"content-type": "application/json; charset=UTF-8"}
+            }
+        
+            const sendData = async (fetchSettings) => {
+                try{
+                    const response = await fetch('/add_new_task', fetchSettings)
+                    const jsonresponse = await response.json()
+                    return jsonresponse
+                }catch(error) {
+                    return error
+                }
+                
+            }
+        
+            sendData(fetchSettings).then(result => {
+                if(result.code_response == 200) {
+                    console.log('The task was successfully added...')
+                }else{
+                    alert('UPSS!!!, Something went wrong')
+                }
+        
+                window.location = window.location
+            })
+        }
+
     }else if(BtnId === 'btn-edit'){
 
         //Getting the label task name and the label task comment for change their text 
@@ -266,5 +273,52 @@ tbody.addEventListener('click', (event) => {
             const taskCompleted = 'no'
             setCompletedTaskValue(taskCompleted, idTask)
         }
+    }
+})
+
+tbody.addEventListener('dblclick', (event) => {
+    const elementClassName =  event.target.className
+    const taskId = event.target.getAttribute('data-task-id') //Getting the task id
+    const tr = document.querySelector(`tbody > tr[data-task-id="${taskId}"]`)
+    let important = ''
+    if(elementClassName === 'name-task' || elementClassName === 'task-name text-task'){
+
+        if(tr.classList.contains('set-important-color')){
+            important = 'no'
+        }else{
+            important = 'yes'
+        }
+
+        //Add class for chaghe the background color of the row if table row dosen't has the class else remove the class
+        tr.classList.toggle('set-important-color') 
+        
+        const data = {
+            taskId : taskId,
+            important : important
+        }
+
+        const fetchSettings = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {"content-type": "application/json; charset=UTF-8"}
+        }
+
+        const request = async (fetchSettings) => {
+            try{
+                const result = await fetch('/set_important', fetchSettings)
+                const jsonResult =  await result.json()
+                return jsonResult
+            }catch(error) {
+                return error
+            }
+        }
+        
+        request(fetchSettings).then( resultCode => {
+            if(resultCode.code_response == 200 ){
+                console.log('The priority was set as important in database successfully')
+            }else{
+                console.log(`Ups something was wrong with the error ${resultCode}`)
+            }
+        })
     }
 })

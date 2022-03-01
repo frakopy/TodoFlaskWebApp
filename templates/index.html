@@ -32,8 +32,12 @@
                 </thead>
                 <tbody id="tbody">
                     {%for task in tasksData%}
-                        <tr data-task-id="{{task.id_task}}">
-                            <td class="name-task">
+                        {% if task.important == 'yes' %}
+                            <tr class="set-important-color" data-task-id="{{task.id_task}}">
+                        {% else %}
+                            <tr data-task-id="{{task.id_task}}">
+                        {% endif %}
+                            <td class="name-task" data-task-id="{{task.id_task}}">
                                 {% if task.task_completed == 'yes' %}
                                     <input class="task-name input-checkbox" type="checkbox" name="task-{{task.id_task}}" data-task-id="{{task.id_task}}" checked>
                                 {% else %}

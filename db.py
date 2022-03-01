@@ -55,3 +55,17 @@ class database():
         except Exception as e:
             print(e)
             return 600
+
+    def set_important(self, task_id, important, mysql):
+        try:
+            cursor =  mysql.connection.cursor()
+            cursor.execute("UPDATE tasks SET important='{}' WHERE id_task = '{}'".format(important, task_id)) 
+            mysql.connection.commit()
+            cursor.close()
+            return 200
+        except Exception as e:
+            print(e)
+            return 600
+
+if __name__ == "__main__":
+    db =  database()

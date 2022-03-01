@@ -58,6 +58,14 @@ def set_completed_task():
     result_code = db.set_completed_task(task_completed_value, task_id, mysql)
     return jsonify(code_response = result_code)
 
+@app.route('/set_important', methods=['POST'])
+def set_important():
+    data_received =  request.json
+    important = data_received['important']
+    task_id = data_received['taskId']
+    result_code = db.set_important(task_id, important, mysql)
+    return jsonify(code_response = result_code)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port = 8089)

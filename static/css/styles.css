@@ -90,15 +90,16 @@ table > tbody > tr > td > img {
 }
 
 /* Size the colums table */
-table > tbody > tr > .name-task {
+
+.name-task {
     width: 35%;
 }
 
-table > tbody > tr > .comentaries {
+.comentaries {
     width: 55%;
 }
 
-table > tbody > tr > .images {
+.images {
     width: 10%;
 }
 
@@ -107,6 +108,7 @@ table > tbody > tr > .images {
 table > tbody > tr:hover {
     background: rgba(41, 199, 172, 0.4);
 }
+
 
 .header{grid-area: header; height: 80px;}
 .form{grid-area: form;}
@@ -174,3 +176,14 @@ button span{
 button:hover::after{
     left: 0;
 }
+
+/*------------ Set background color to the class element set-important-color when hover and when not hover ---------------*/
+/*------------This classs is added to the table row element when we double clicked over it, this is controlled by javascript-------- */
+.set-important-color:hover{
+    background-color: #FBFFE2;
+}
+
+.set-important-color{
+    background-color: #FBFFE2;
+}
+/* ------------------------------------------------------------------------------------------- */
