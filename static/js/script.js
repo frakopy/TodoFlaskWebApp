@@ -35,7 +35,8 @@ form.addEventListener('submit', (e) => {
         const taskName = form.elements['task-name'].value
         const taskComment = form.elements['task-comments'].value
         
-        if(taskName.length === 0) {
+        //validating if the length value of the input where we write the task name is empty
+        if(taskName.length === 0) { 
             inputTaskName.style.color = 'red'
             inputTaskName.value = 'This element can not be empty, please write your task here'
         }else{
@@ -94,7 +95,7 @@ form.addEventListener('submit', (e) => {
         taskComments.textContent = textTaskComment
 
         //Change temporally the background of the row that was modified
-        row.style.background = '#FDF0D5'
+        row.style.background = '#FAF2F2'
         
         //Removing save and cancel buttons
         form.removeChild(btnSave)
