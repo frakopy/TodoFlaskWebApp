@@ -50,7 +50,7 @@ body{
 
 
 table, th, td {
-    border: 2px solid;
+    border: 1.5px solid;
     border-collapse: collapse;
     border-color: #162447;
     border-color: #F9D276;
@@ -91,7 +91,7 @@ tr > .comentaries, .images {
 .images {width: 10%;}
 /* -----------------------------------  */
 
-tr:hover > td {
+tr:hover td {
     background: rgba(62, 73, 122, 0.4);
     color: white;
 }
@@ -163,8 +163,9 @@ button:hover::after{
 
 /*---Set background color to the class element set-important-color when hover and when not hover ---------------*/
 /*---This classs is added to the table row element when we double clicked over it, this is controlled by javascript-------- */
-.set-important-color:hover{
+.set-important-color:hover td{
     background-color: #FBFFE2;
+    color: black;
 }
 
 .set-important-color{
