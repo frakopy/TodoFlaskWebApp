@@ -92,7 +92,7 @@ tr > .comentaries, .images {
 /* -----------------------------------  */
 
 tr:hover {
-    background: rgba(41, 199, 172, 0.4);
+    background: rgba(62, 73, 122, 0.4);
 }
 
 
@@ -214,7 +214,7 @@ button:hover::after{
 }
 
 @media screen and (max-width: 1000px) {
-    
+
     .grid-container{
         grid-template-columns: repeat(auto-fit, minmax(auto, 95vw));
     }
