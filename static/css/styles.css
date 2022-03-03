@@ -91,10 +91,10 @@ tr > .comentaries, .images {
 .images {width: 10%;}
 /* -----------------------------------  */
 
-tr:hover {
+tr:hover > td {
     background: rgba(62, 73, 122, 0.4);
+    color: white;
 }
-
 
 .header{grid-area: header; height: 80px;}
 .form{grid-area: form;}
