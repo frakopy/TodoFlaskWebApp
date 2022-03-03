@@ -132,9 +132,12 @@ button{
     position: relative;
     overflow: hidden;
     margin-bottom: 25px;
+    transition: 0.3s ease all;
 }
 
-
+button:active{
+    transform: scale(0.5);
+}
 
 /* Remember after is a soon of the element in this case soon of the button for that reason button has position relative and after has position abosulute and so we can say with / height 100% of his fater (button)*/
 button::after{
