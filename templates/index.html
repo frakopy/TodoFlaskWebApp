@@ -18,7 +18,8 @@
 
         <form class="form" id="form">
             <input type="text" class='task' id="input-taskName" name="task-name" placeholder="Write Your Task Here">
-            <input type="text" class='coment-task' id="input-taskComment" name="task-comments" placeholder="Comments...">
+            <!-- <input type="text" class='coment-task' id="input-taskComment" name="task-comments" placeholder="Comments..."> -->
+            <textarea class='coment-task' id="textarea-taskComments" name="task-comments" placeholder="Add the task comments... " wrap="soft"></textarea>
             <button class="btn-task" id="btn-task"><span>Add Task</span></button>
         </form>
 
@@ -32,12 +33,9 @@
                 </thead>
                 <tbody id="tbody">
                     {%for task in tasksData%}
+                        <tr data-task-id="{{task.id_task}}">
                         {% if task.important == 'yes' %}
-                            <tr class="set-important-color" data-task-id="{{task.id_task}}">
-                        {% else %}
-                            <tr data-task-id="{{task.id_task}}">
-                        {% endif %}
-                            <td class="name-task" data-task-id="{{task.id_task}}">
+                            <td class="name-task set-important-color" data-task-id="{{task.id_task}}">
                                 {% if task.task_completed == 'yes' %}
                                     <input class="task-name input-checkbox" type="checkbox" name="task-{{task.id_task}}" data-task-id="{{task.id_task}}" checked>
                                 {% else %}
@@ -45,15 +43,34 @@
                                 {% endif %}
                                 <label class="task-name text-task" for="task-{{task.id_task}}" data-task-id="{{task.id_task}}">{{task.task_name}}</label>
                             </td>
-                            <td class="comentaries">
+                            <td class="comentaries set-important-color" data-task-id="{{task.id_task}}">
                                 <label class="comments" data-task-id="{{task.id_task}}">{{task.task_comment}}</label>
                             </td>
-                            <td class="images">
+                            <td class="images set-important-color" data-task-id="{{task.id_task}}">
                                 <img class="edit" src="{{url_for('static', filename='img/edit.png')}}" alt="edit-image" data-task-id="{{task.id_task}}">
                             </td>
-                            <td class="images">
+                            <td class="images set-important-color" data-task-id="{{task.id_task}}">
                                 <img class="delete" src="{{url_for('static', filename='img/delete.png')}}" alt="delete-image" data-task-id="{{task.id_task}}">
                             </td>
+                            {% else %}
+                                <td class="name-task" data-task-id="{{task.id_task}}">
+                                    {% if task.task_completed == 'yes' %}
+                                        <input class="task-name input-checkbox" type="checkbox" name="task-{{task.id_task}}" data-task-id="{{task.id_task}}" checked>
+                                    {% else %}
+                                        <input class="task-name input-checkbox" type="checkbox" name="task-{{task.id_task}}" data-task-id="{{task.id_task}}">
+                                    {% endif %}
+                                    <label class="task-name text-task" for="task-{{task.id_task}}" data-task-id="{{task.id_task}}">{{task.task_name}}</label>
+                                </td>
+                                <td class="comentaries" data-task-id="{{task.id_task}}">
+                                    <label class="comments" data-task-id="{{task.id_task}}">{{task.task_comment}}</label>
+                                </td>
+                                <td class="images" data-task-id="{{task.id_task}}">
+                                    <img class="edit" src="{{url_for('static', filename='img/edit.png')}}" alt="edit-image" data-task-id="{{task.id_task}}">
+                                </td>
+                                <td class="images" data-task-id="{{task.id_task}}">
+                                    <img class="delete" src="{{url_for('static', filename='img/delete.png')}}" alt="delete-image" data-task-id="{{task.id_task}}">
+                                </td>
+                        {% endif %}
                         </tr>
                     {%endfor%}
                 </tbody>

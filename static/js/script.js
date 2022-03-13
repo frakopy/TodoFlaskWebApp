@@ -5,10 +5,15 @@ const form = document.getElementById('form')
 const tbody = document.getElementById('tbody')
 const h1 = document.querySelector('header > h1')
 const inputTaskName = document.getElementById('input-taskName')
-const inputTaskComment = document.getElementById('input-taskComment')
+const textAreaComments = document.getElementById('textarea-taskComments')
 const btnAddTask = document.getElementById('btn-task')
 
 let idTask = ''
+
+//Load task from DB
+const lod_task = () => {
+    
+}
 
 const changeHeaderText = (text) => {
     h1.textContent = text
@@ -40,10 +45,11 @@ form.addEventListener('submit', (e) => {
             inputTaskName.style.color = 'red'
             inputTaskName.value = 'This element can not be empty, please write your task here'
             setTimeout(() => {inputTaskName.value = ''}, 2000)
-        }else{
-
+        }
+        
+        else{
             //Changing header text for notify the user
-            changeHeaderText('Adding the task...')
+            changeHeaderText('Adding the task to DB...')
             
             const dataToSend = {
                 taskName: taskName,
@@ -279,20 +285,34 @@ tbody.addEventListener('click', (event) => {
 })
 
 tbody.addEventListener('dblclick', (event) => {
-    const elementClassName =  event.target.className
+    const classElementClicked =  event.target.className
     const taskId = event.target.getAttribute('data-task-id') //Getting the task id
     const tr = document.querySelector(`tbody > tr[data-task-id="${taskId}"]`)
+    const tdList = document.querySelectorAll(`td[data-task-id="${taskId}"]`)
+    
+    console.log(tdList)
+
+    const tdNameTask = tdList[0]
+    const tdCommentTask = tdList[1]
+    const tdimgEdit = tdList[2]
+    const tdimgDelete = tdList[3]
+    const listClassName = ['name-task', 'task-name text-task', 'name-task set-important-color']
     let important = ''
-    if(elementClassName === 'name-task' || elementClassName === 'task-name text-task'){
+    if(listClassName.includes(classElementClicked)){
 
-        if(tr.classList.contains('set-important-color')){
-            important = 'no'
-        }else{
+        //Add class for chaghe the color text of the labels if labels dosen't has the class else remove the class
+        //Also we add the class for the img elements because in CSS we apply a rule for all elements that has
+        //set-important-color when hover a tr element
+        tdNameTask.classList.toggle('set-important-color')
+        tdCommentTask.classList.toggle('set-important-color')
+        tdimgEdit.classList.toggle('set-important-color')
+        tdimgDelete.classList.toggle('set-important-color')
+
+        if(tdNameTask.classList.contains('set-important-color') && tdCommentTask.classList.contains('set-important-color')){
             important = 'yes'
+        }else{
+            important = 'no'
         }
-
-        //Add class for chaghe the background color of the row if table row dosen't has the class else remove the class
-        tr.classList.toggle('set-important-color') 
         
         const data = {
             taskId : taskId,
@@ -317,7 +337,7 @@ tbody.addEventListener('dblclick', (event) => {
         
         request(fetchSettings).then( resultCode => {
             if(resultCode.code_response == 200 ){
-                console.log('The priority was set as important in database successfully')
+                console.log('The priority was set successfully in the database')
             }else{
                 console.log(`Ups something was wrong with the error ${resultCode}`)
             }

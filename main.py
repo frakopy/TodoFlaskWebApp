@@ -62,6 +62,7 @@ def set_completed_task():
 def set_important():
     data_received =  request.json
     important = data_received['important']
+    print(f'the important set is {important}')
     task_id = data_received['taskId']
     result_code = db.set_important(task_id, important, mysql)
     return jsonify(code_response = result_code)
