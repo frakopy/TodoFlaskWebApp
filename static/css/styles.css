@@ -194,7 +194,29 @@ button:hover::after{
     display: none;
 }
 
+/* ------------------------Animation blink used when we add a new task--------------------------------*/
+.blink{
+    animation: blinker 0.5s linear;
+    animation-iteration-count: 2;
+}
+
+@keyframes blinker {
+    0%{
+        color: #E60965;
+    }
+    10%{
+        color: #F94892;
+    }
+    25%{
+        color: #FFA1C9;
+    }
+    50% {
+        opacity: 0;
+    }
+}
 /* -----------------------------------------------------------------------------------------------*/
+
+
 /* ----------Defining media querys settings ---------------------------------------------------- */
 
 @media screen and (max-width: 700px) {
