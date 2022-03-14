@@ -23,6 +23,7 @@ load_task().then(result => {
     const fragment = document.createDocumentFragment()
     result.tasksData.map(task => {
         const tr =  document.createElement('tr')
+        tr.setAttribute('data-task-id', `${task.id_task}`)
         tr.innerHTML = `
             <td class="name-task" data-task-id="${task.id_task}">
                 <input class="task-name input-checkbox" type="checkbox" name="task-${task.id_task}" data-task-id="${task.id_task}">
@@ -80,10 +81,41 @@ form.addEventListener('submit', (e) => {
         }
         
         else{
-            //Changing header text for notify the user
-            changeHeaderText('Adding the task to DB...')
-            
+
+            const taskList = Array.from(document.querySelectorAll('.name-task'))
+            let newTaskId
+            //If there is not any task we can not get the last task id so we create it with value = 1
+            if(taskList.length === 0){
+                newTaskId = 1
+            }else{
+                const lastTd = taskList[taskList.length - 1]
+                const lastTaskId = Number(lastTd.dataset.taskId)
+                newTaskId = lastTaskId + 1
+            }
+
+            //-----------------------Create the new row with it's tds-------------------------------------------------------------
+            const new_tr =  document.createElement('tr')
+            new_tr.setAttribute('data-task-id', `${newTaskId}`)
+            new_tr.innerHTML = `
+                <td class="name-task" data-task-id="${newTaskId}">
+                    <input class="task-name input-checkbox" type="checkbox" name="task-${newTaskId}" data-task-id="${newTaskId}">
+                    <label class="task-name text-task" for="task-${newTaskId}" data-task-id="${newTaskId}">${taskName}</label>
+                </td>
+                <td class="comentaries" data-task-id="${newTaskId}">
+                    <label class="comments" data-task-id="${newTaskId}">${taskComment}</label>
+                </td>
+                <td class="images" data-task-id="${newTaskId}">
+                    <img class="edit" src="/static/img/edit.png" alt="edit-image" data-task-id="${newTaskId}">
+                </td>
+                <td class="images" data-task-id="${newTaskId}">
+                    <img class="delete" src="/static/img/delete.png" alt="delete-image" data-task-id="${newTaskId}">
+                </td>
+            `
+            tbody.insertAdjacentElement('afterbegin', new_tr)
+            //---------------------------------------------------------------------------------------------
+
             const dataToSend = {
+                taskId : newTaskId,
                 taskName: taskName,
                 taskComment: taskComment
             }
@@ -107,23 +139,22 @@ form.addEventListener('submit', (e) => {
         
             sendData(fetchSettings).then(result => {
                 if(result.code_response == 200) {
-                    console.log('The task was successfully added...')
+                    //Changing header text for notify the user
+                    changeHeaderText('Adding the task to DB...')
                 }else{
                     alert('UPSS!!!, Something went wrong')
                 }
-        
-                window.location = window.location
             })
         }
 
     }else if(BtnId === 'btn-edit'){
 
         //Getting the label task name and the label task comment for change their text 
-        const taskName = document.querySelector(`tbody > tr[data-task-id="${idTask}"] > td > .text-task`)
-        const taskComments = document.querySelector(`tbody > tr[data-task-id="${idTask}"] > td > .comments`)
+        const taskName = document.querySelector(`td[data-task-id="${idTask}"] > .text-task`)
+        const taskComments = document.querySelector(`td[data-task-id="${idTask}"] > .comments`)
 
         //Get the row that match with the task id for temporally change the background 
-        const row = document.querySelector(`tbody > tr[data-task-id="${idTask}"]`)
+        const row = document.querySelector(`tr[data-task-id="${idTask}"]`)
 
         //Getting the text written  by the user in the form element
         const textTaskName = form.elements['task-name'].value
@@ -145,7 +176,7 @@ form.addEventListener('submit', (e) => {
 
         //Clearing the text content of inputs boxes
         inputTaskName.value = ''
-        inputTaskComment.value = ''
+        textAreaComments.value = ''
 
         //After 5 seconds remove the background color #07004D
         setTimeout(() => {
@@ -187,7 +218,7 @@ form.addEventListener('submit', (e) => {
     }else if(BtnId == 'btn-cancel'){
         //Clearing the text content of inputs boxes
         inputTaskName.value = ''
-        inputTaskComment.value = ''
+        textAreaComments.value = ''
         
         //Removing save and cancel buttons
         form.removeChild(btnSave)
@@ -292,7 +323,7 @@ tbody.addEventListener('click', (event) => {
         
         //Writing the task name and tasck comments in the input boxes
         inputTaskName.value = taskName
-        inputTaskComment.value = taskComments
+        textAreaComments.value = taskComments
     
         //Setting focus to the input where we are going to write the task name 
         inputTaskName.focus()
@@ -330,6 +361,7 @@ tbody.addEventListener('dblclick', (event) => {
     const tdimgDelete = tdList[3]
     const listClassName = ['name-task', 'task-name text-task', 'name-task set-important-color']
     let important = ''
+    
     if(listClassName.includes(classElementClicked)){
 
         //Add class for chaghe the color text of the labels if labels dosen't has the class else remove the class

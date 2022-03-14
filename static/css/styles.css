@@ -187,7 +187,6 @@ button:hover::after{
 /*---Set color to the class element set-important-color ---------------*/
 .set-important-color{
     color: red;
-    /* background-color: #FBFFE2; */
 }
 
 /* For initially hide header, form and table, later we show these elements using javaScript */

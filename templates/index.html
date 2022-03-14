@@ -31,47 +31,7 @@
                     <th class="table-headers">Delete</th>
                 </thead>
                 <tbody id="tbody">
-                    <!-- {%for task in tasksData%}
-                        <tr data-task-id="{{task.id_task}}">
-                        {% if task.important == 'yes' %}
-                            <td class="name-task set-important-color" data-task-id="{{task.id_task}}">
-                                {% if task.task_completed == 'yes' %}
-                                    <input class="task-name input-checkbox" type="checkbox" name="task-{{task.id_task}}" data-task-id="{{task.id_task}}" checked>
-                                {% else %}
-                                    <input class="task-name input-checkbox" type="checkbox" name="task-{{task.id_task}}" data-task-id="{{task.id_task}}">
-                                {% endif %}
-                                <label class="task-name text-task" for="task-{{task.id_task}}" data-task-id="{{task.id_task}}">{{task.task_name}}</label>
-                            </td>
-                            <td class="comentaries set-important-color" data-task-id="{{task.id_task}}">
-                                <label class="comments" data-task-id="{{task.id_task}}">{{task.task_comment}}</label>
-                            </td>
-                            <td class="images set-important-color" data-task-id="{{task.id_task}}">
-                                <img class="edit" src="{{url_for('static', filename='img/edit.png')}}" alt="edit-image" data-task-id="{{task.id_task}}">
-                            </td>
-                            <td class="images set-important-color" data-task-id="{{task.id_task}}">
-                                <img class="delete" src="{{url_for('static', filename='img/delete.png')}}" alt="delete-image" data-task-id="{{task.id_task}}">
-                            </td>
-                            {% else %}
-                                <td class="name-task" data-task-id="{{task.id_task}}">
-                                    {% if task.task_completed == 'yes' %}
-                                        <input class="task-name input-checkbox" type="checkbox" name="task-{{task.id_task}}" data-task-id="{{task.id_task}}" checked>
-                                    {% else %}
-                                        <input class="task-name input-checkbox" type="checkbox" name="task-{{task.id_task}}" data-task-id="{{task.id_task}}">
-                                    {% endif %}
-                                    <label class="task-name text-task" for="task-{{task.id_task}}" data-task-id="{{task.id_task}}">{{task.task_name}}</label>
-                                </td>
-                                <td class="comentaries" data-task-id="{{task.id_task}}">
-                                    <label class="comments" data-task-id="{{task.id_task}}">{{task.task_comment}}</label>
-                                </td>
-                                <td class="images" data-task-id="{{task.id_task}}">
-                                    <img class="edit" src="{{url_for('static', filename='img/edit.png')}}" alt="edit-image" data-task-id="{{task.id_task}}">
-                                </td>
-                                <td class="images" data-task-id="{{task.id_task}}">
-                                    <img class="delete" src="{{url_for('static', filename='img/delete.png')}}" alt="delete-image" data-task-id="{{task.id_task}}">
-                                </td>
-                        {% endif %}
-                        </tr>
-                    {%endfor%} -->
+                <!-- The rows are created and added here through javaScript -->
                 </tbody>
             </table>
         </div>
