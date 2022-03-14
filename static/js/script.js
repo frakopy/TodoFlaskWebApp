@@ -22,20 +22,26 @@ const load_task = async () => {
 load_task().then(result => {
     const fragment = document.createDocumentFragment()
     result.tasksData.map(task => {
+        const completed = task.task_completed
+        let taskChecked
+        completed === 'yes' ? taskChecked = "checked" : taskChecked = ''
+        const importantTask =  task.important
+        let classImportant
+        importantTask === 'yes' ? classImportant = " set-important-color" : classImportant = '' //The space in classImportant = " .set-important-color" is very important
         const tr =  document.createElement('tr')
         tr.setAttribute('data-task-id', `${task.id_task}`)
         tr.innerHTML = `
-            <td class="name-task" data-task-id="${task.id_task}">
-                <input class="task-name input-checkbox" type="checkbox" name="task-${task.id_task}" data-task-id="${task.id_task}">
+            <td class="name-task${classImportant}" data-task-id="${task.id_task}">
+                <input class="task-name input-checkbox" type="checkbox" name="task-${task.id_task}" data-task-id="${task.id_task}" ${taskChecked}>
                 <label class="task-name text-task" for="task-${task.id_task}" data-task-id="${task.id_task}">${task.task_name}</label>
             </td>
-            <td class="comentaries" data-task-id="${task.id_task}">
+            <td class="comentaries${classImportant}" data-task-id="${task.id_task}">
                 <label class="comments" data-task-id="${task.id_task}">${task.task_comment}</label>
             </td>
-            <td class="images" data-task-id="${task.id_task}">
+            <td class="images${classImportant}" data-task-id="${task.id_task}">
                 <img class="edit" src="/static/img/edit.png" alt="edit-image" data-task-id="${task.id_task}">
             </td>
-            <td class="images" data-task-id="${task.id_task}">
+            <td class="images${classImportant}" data-task-id="${task.id_task}">
                 <img class="delete" src="/static/img/delete.png" alt="delete-image" data-task-id="${task.id_task}">
             </td>
         `
@@ -355,15 +361,13 @@ tbody.addEventListener('dblclick', (event) => {
     const taskId = event.target.getAttribute('data-task-id') //Getting the task id
     const tr = document.querySelector(`tbody > tr[data-task-id="${taskId}"]`)
     const tdList = document.querySelectorAll(`td[data-task-id="${taskId}"]`)
-    
-    console.log(tdList)
-
     const tdNameTask = tdList[0]
     const tdCommentTask = tdList[1]
     const tdimgEdit = tdList[2]
     const tdimgDelete = tdList[3]
-    const listClassName = ['name-task', 'task-name text-task', 'name-task set-important-color']
     let important = ''
+
+    const listClassName = ['name-task', 'task-name text-task', 'name-task set-important-color']
 
     if(listClassName.includes(classElementClicked)){
 
