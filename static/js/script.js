@@ -111,7 +111,12 @@ form.addEventListener('submit', (e) => {
                     <img class="delete" src="/static/img/delete.png" alt="delete-image" data-task-id="${newTaskId}">
                 </td>
             `
+            //Add the new row created to the tbody of the table element
             tbody.insertAdjacentElement('afterbegin', new_tr)
+
+            //Reset the form for clear the text from input and textarea boxes.
+            form.reset() 
+
             //---------------------------------------------------------------------------------------------
 
             const dataToSend = {
@@ -174,9 +179,8 @@ form.addEventListener('submit', (e) => {
         //Adding add task button
         form.appendChild(btnAddTask)
 
-        //Clearing the text content of inputs boxes
-        inputTaskName.value = ''
-        textAreaComments.value = ''
+         //Reset the form for clear the text from input and textarea boxes.
+        form.reset() 
 
         //After 5 seconds remove the background color #07004D
         setTimeout(() => {
@@ -216,9 +220,8 @@ form.addEventListener('submit', (e) => {
         })
 
     }else if(BtnId == 'btn-cancel'){
-        //Clearing the text content of inputs boxes
-        inputTaskName.value = ''
-        textAreaComments.value = ''
+        //Reset the form for clear the text from input and textarea boxes.
+        form.reset() 
         
         //Removing save and cancel buttons
         form.removeChild(btnSave)
@@ -329,7 +332,7 @@ tbody.addEventListener('click', (event) => {
         inputTaskName.focus()
 
     }else if(elementClassName === 'delete'){
-        const trToDelete = document.querySelector(`tbody > tr[data-task-id="${idTask}"]`)
+        const trToDelete = document.querySelector(`tr[data-task-id="${idTask}"]`)
         tbody.removeChild(trToDelete) //Remove row task from DOM
         delTask(idTask) //Call function for remove task from DB
     
@@ -361,7 +364,7 @@ tbody.addEventListener('dblclick', (event) => {
     const tdimgDelete = tdList[3]
     const listClassName = ['name-task', 'task-name text-task', 'name-task set-important-color']
     let important = ''
-    
+
     if(listClassName.includes(classElementClicked)){
 
         //Add class for chaghe the color text of the labels if labels dosen't has the class else remove the class
