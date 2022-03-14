@@ -22,9 +22,14 @@ db = database()
 
 @app.route('/')
 def index():
-    tasks_data  = db.get_tasks(mysql)
-    return render_template('index.html', tasksData = tasks_data)
+    # tasks_data  = db.get_tasks(mysql)
+    # return render_template('index.html', tasksData = tasks_data)
+    return render_template('index.html')
 
+@app.route('/get_tasks')
+def get_tasks():
+    tasks_data  = db.get_tasks(mysql)
+    return jsonify(tasksData = tasks_data)
 
 @app.route('/add_new_task', methods=['POST'])
 def add_task():

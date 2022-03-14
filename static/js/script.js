@@ -1,19 +1,51 @@
 'use strict'
 
-//Define variables which contains html elements:
+//-----------------Define variables which contains html elements ----------
 const form = document.getElementById('form')
 const tbody = document.getElementById('tbody')
 const h1 = document.querySelector('header > h1')
 const inputTaskName = document.getElementById('input-taskName')
 const textAreaComments = document.getElementById('textarea-taskComments')
 const btnAddTask = document.getElementById('btn-task')
-
+const hidedElements = Array.from(document.querySelectorAll('.hide'))
 let idTask = ''
+//-----------------------------------------------------------------------
+
 
 //Load task from DB
-const lod_task = () => {
-    
+const load_task = async () => {
+    const getTasks = await fetch('/get_tasks')
+    const result = await getTasks.json()
+    return result
 }
+
+load_task().then(result => {
+    const fragment = document.createDocumentFragment()
+    result.tasksData.map(task => {
+        const tr =  document.createElement('tr')
+        tr.innerHTML = `
+            <td class="name-task" data-task-id="${task.id_task}">
+                <input class="task-name input-checkbox" type="checkbox" name="task-${task.id_task}" data-task-id="${task.id_task}">
+                <label class="task-name text-task" for="task-${task.id_task}" data-task-id="${task.id_task}">${task.task_name}</label>
+            </td>
+            <td class="comentaries" data-task-id="${task.id_task}">
+                <label class="comments" data-task-id="${task.id_task}">${task.task_comment}</label>
+            </td>
+            <td class="images" data-task-id="${task.id_task}">
+                <img class="edit" src="/static/img/edit.png" alt="edit-image" data-task-id="${task.id_task}">
+            </td>
+            <td class="images" data-task-id="${task.id_task}">
+                <img class="delete" src="/static/img/delete.png" alt="delete-image" data-task-id="${task.id_task}">
+            </td>
+        `
+        fragment.appendChild(tr)
+    })
+    tbody.appendChild(fragment)
+
+    //Show all elements once all tr has been added to tbody element, so we remove the class that hid them
+    hidedElements.map(element => {element.classList.remove('hide')})
+
+})
 
 const changeHeaderText = (text) => {
     h1.textContent = text
@@ -240,8 +272,8 @@ tbody.addEventListener('click', (event) => {
     idTask = event.target.getAttribute('data-task-id') //Getting the task id
     if(elementClassName === 'edit'){
         //Getting task Name and comments from table
-        const taskName = document.querySelector(`tbody > tr[data-task-id="${idTask}"] > td > .text-task`).textContent
-        const taskComments = document.querySelector(`tbody > tr[data-task-id="${idTask}"] > td > .comments`).textContent
+        const taskName = document.querySelector(`td[data-task-id="${idTask}"] > .text-task`).textContent
+        const taskComments = document.querySelector(`td[data-task-id="${idTask}"] > .comments`).textContent
         
         //Creating the new buttons save and cancel
         const btnSave = document.createElement('button')

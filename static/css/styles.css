@@ -16,7 +16,6 @@ body{
     z-index: -1; 
 }
 
-
 .grid-container{
     display:grid;
     height:100vh;
@@ -39,15 +38,14 @@ body{
     font-weight: bold;
     text-align: center;
     color: #03C4A1;
-}
 
+}
 
 .table-tasks {
     margin-bottom: 10px;
     width: 100%;
     overflow: auto;
 }
-
 
 table, th, td {
     border: 1.5px solid;
@@ -186,17 +184,15 @@ button:hover::after{
     left: 0;
 }
 
-/*---Set background color to the class element set-important-color when hover and when not hover ---------------*/
-/*---This classs is added to the table row element when we double clicked over it, this is controlled by javascript-------- */
-/* .set-important-color:hover td{
-    background-color: #FBFFE2;
-    color: red;
-    color: black;
-} */
-
+/*---Set color to the class element set-important-color ---------------*/
 .set-important-color{
     color: red;
     /* background-color: #FBFFE2; */
+}
+
+/* For initially hide header, form and table, later we show these elements using javaScript */
+.hide{
+    display: none;
 }
 
 /* -----------------------------------------------------------------------------------------------*/
