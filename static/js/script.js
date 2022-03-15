@@ -102,13 +102,14 @@ form.addEventListener('submit', (e) => {
             //-----------------------Create the new row with it's tds-------------------------------------------------------------
             const new_tr =  document.createElement('tr')
             new_tr.setAttribute('data-task-id', `${newTaskId}`)
+            new_tr.classList.add('blink')
             new_tr.innerHTML = `
                 <td class="name-task" data-task-id="${newTaskId}">
                     <input class="task-name input-checkbox" type="checkbox" name="task-${newTaskId}" data-task-id="${newTaskId}">
-                    <label class="task-name text-task blink" for="task-${newTaskId}" data-task-id="${newTaskId}">${taskName}</label>
+                    <label class="task-name text-task" for="task-${newTaskId}" data-task-id="${newTaskId}">${taskName}</label>
                 </td>
                 <td class="comentaries" data-task-id="${newTaskId}">
-                    <label class="comments blink" data-task-id="${newTaskId}">${taskComment}</label>
+                    <label class="comments" data-task-id="${newTaskId}">${taskComment}</label>
                 </td>
                 <td class="images" data-task-id="${newTaskId}">
                     <img class="edit" src="/static/img/edit.png" alt="edit-image" data-task-id="${newTaskId}">

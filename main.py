@@ -37,7 +37,7 @@ def add_task():
     task_name = task_data['taskName']
     task_comment = task_data['taskComment']
     task_id = task_data['taskId']
-    result_code = db.add_task(task_id, task_name, task_comment ,mysql)
+    result_code = db.add_task(task_id, task_name, task_comment, mysql)
     return jsonify(code_response = result_code)
 
 @app.route('/delete_task', methods=['POST'])
