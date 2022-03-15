@@ -102,13 +102,13 @@ form.addEventListener('submit', (e) => {
             //-----------------------Create the new row with it's tds-------------------------------------------------------------
             const new_tr =  document.createElement('tr')
             new_tr.setAttribute('data-task-id', `${newTaskId}`)
-            new_tr.classList.add('blink')
+            new_tr.classList.add('blink') //This class is for play an animation background and also is added to td task name and td task comments in the innerHtml
             new_tr.innerHTML = `
-                <td class="name-task" data-task-id="${newTaskId}">
+                <td class="name-task blink" data-task-id="${newTaskId}">
                     <input class="task-name input-checkbox" type="checkbox" name="task-${newTaskId}" data-task-id="${newTaskId}">
                     <label class="task-name text-task" for="task-${newTaskId}" data-task-id="${newTaskId}">${taskName}</label>
                 </td>
-                <td class="comentaries" data-task-id="${newTaskId}">
+                <td class="comentaries blink" data-task-id="${newTaskId}">
                     <label class="comments" data-task-id="${newTaskId}">${taskComment}</label>
                 </td>
                 <td class="images" data-task-id="${newTaskId}">
@@ -176,8 +176,11 @@ form.addEventListener('submit', (e) => {
         taskName.textContent = textTaskName
         taskComments.textContent = textTaskComment
 
-        //Change temporally the background of the row that was modified
-        row.style.background = '#FAF2F2'
+        //Change temporally the background of the row and labels text that has been modified
+        row.classList.add('modified-task')
+        taskName.classList.add('modified-task')
+        taskComments.classList.add('modified-task')
+        
         
         //Removing save and cancel buttons
         form.removeChild(btnSave)
@@ -191,7 +194,9 @@ form.addEventListener('submit', (e) => {
 
         //After 5 seconds remove the background color #07004D
         setTimeout(() => {
-            row.style.background = ''
+            row.classList.remove('modified-task')
+            taskName.classList.remove('modified-task')
+            taskComments.classList.remove('modified-task')
         }, 5000)
 
         //Sending the request to backend in order to update the database with the new information

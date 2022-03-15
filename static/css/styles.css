@@ -194,6 +194,15 @@ button:hover::after{
     display: none;
 }
 
+/*----------------------Class used when we modify a task---------------*/
+
+.modified-task{
+    color: #26001B;
+    background-color:#FAF2F2;
+}
+/*------------------------------------------------------------------*/
+
+
 /* ------------------------Animation blink used when we add a new task--------------------------------*/
 .blink{
     animation: blinker 0.3s linear;
@@ -201,8 +210,14 @@ button:hover::after{
 }
 
 @keyframes blinker {
-    from{background-color: transparent;}
-    to{background-color:#293462}
+    from{
+        background-color: transparent;
+        color:white;
+    }
+    to{
+        background-color:#293462;
+        color:white;
+    }
 }
 /* -----------------------------------------------------------------------------------------------*/
 
