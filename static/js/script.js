@@ -83,7 +83,10 @@ form.addEventListener('submit', (e) => {
         if(taskName.length === 0) { 
             inputTaskName.style.color = 'red'
             inputTaskName.value = 'This element can not be empty, please write your task here'
-            setTimeout(() => {inputTaskName.value = ''}, 2000)
+            setTimeout(() => {
+                inputTaskName.value = ''
+                inputTaskName.style.color = 'black'
+            }, 2000)
         }
         
         else{
