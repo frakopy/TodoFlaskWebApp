@@ -366,9 +366,8 @@ tbody.addEventListener('click', (event) => {
 })
 
 tbody.addEventListener('dblclick', (event) => {
-    const classElementClicked =  event.target.className
+    const classElementClicked =  event.target.classList[0] //Getting the name of the first class in the class list
     const taskId = event.target.getAttribute('data-task-id') //Getting the task id
-    const tr = document.querySelector(`tbody > tr[data-task-id="${taskId}"]`)
     const tdList = document.querySelectorAll(`td[data-task-id="${taskId}"]`)
     const tdNameTask = tdList[0]
     const tdCommentTask = tdList[1]
@@ -376,7 +375,7 @@ tbody.addEventListener('dblclick', (event) => {
     const tdimgDelete = tdList[3]
     let important = ''
 
-    const listClassName = ['name-task', 'task-name text-task', 'name-task set-important-color']
+    const listClassName = ['name-task', 'task-name']
 
     if(listClassName.includes(classElementClicked)){
 
