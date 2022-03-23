@@ -14,6 +14,7 @@ class database():
     def add_task(self, task_id, task_name, task_comment, mysql):
         try:
             cursor =  mysql.connection.cursor()
+            # Note that we use doble quotes for the values in order to allow insertion of text with apostrophe
             cursor.execute('INSERT INTO tasks (id_task, task_name, task_comment) VALUES ("{}","{}","{}")'.format(task_id, task_name, task_comment)) 
             mysql.connection.commit()
             cursor.close()
