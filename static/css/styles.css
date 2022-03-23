@@ -121,7 +121,10 @@ tr:hover td:not(.set-important-color) {
 
 textarea::placeholder {
     line-height: 80px;
+    opacity: 0.5;
 }
+
+input[type="text"]::placeholder {opacity: 0.5;}
 
 #input-taskName:focus::placeholder, #textarea-taskComments:focus::placeholder{
     color: transparent;
