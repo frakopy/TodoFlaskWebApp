@@ -127,8 +127,7 @@ form.addEventListener('submit', (e) => {
             //Reset the form for clear the text from input and textarea boxes.
             form.reset() 
 
-            //---------------------------------------------------------------------------------------------
-
+            //----------------- Send data to the backend ----------------------------------------------------------------
             const dataToSend = {
                 taskId : newTaskId,
                 taskName: taskName,
@@ -157,6 +156,7 @@ form.addEventListener('submit', (e) => {
                     //Changing header text for notify the user
                     changeHeaderText('Adding the task to DB...')
                 }else{
+                    tbody.removeChild(new_tr)
                     alert('UPSS!!!, Something went wrong')
                 }
             })

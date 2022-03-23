@@ -14,11 +14,12 @@ class database():
     def add_task(self, task_id, task_name, task_comment, mysql):
         try:
             cursor =  mysql.connection.cursor()
-            cursor.execute("INSERT INTO tasks (id_task, task_name, task_comment) VALUES ('{}','{}','{}')".format(task_id, task_name, task_comment)) 
+            cursor.execute('INSERT INTO tasks (id_task, task_name, task_comment) VALUES ("{}","{}","{}")'.format(task_id, task_name, task_comment)) 
             mysql.connection.commit()
             cursor.close()
             return 200
         except Exception as e:
+            print(e)
             return 600
 
 
