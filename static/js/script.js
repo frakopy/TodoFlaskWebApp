@@ -93,13 +93,17 @@ form.addEventListener('submit', (e) => {
 
             const taskList = Array.from(document.querySelectorAll('.name-task'))
             let newTaskId
+
             //If there is not any task we can not get the last task id so we create it with value = 1
             if(taskList.length === 0){
                 newTaskId = 1
             }else{
-                const lastTd = taskList[taskList.length - 1]
-                const lastTaskId = Number(lastTd.dataset.taskId)
-                newTaskId = lastTaskId + 1
+
+                const taskIds = taskList.map( task => {
+                    return Number(task.dataset.taskId)
+                })
+                
+                newTaskId = Math.max(...taskIds) + 1
             }
 
             //-----------------------Create the new row with it's tds-------------------------------------------------------------
