@@ -105,8 +105,7 @@ form.addEventListener('submit', (e) => {
                 
                 newTaskId = Math.max(...taskIds) + 1
             }
-            console.log('The new taskId is: ', newTaskId)
-
+            
             //-----------------------Create the new row with it's tds-------------------------------------------------------------
             const new_tr =  document.createElement('tr')
             new_tr.setAttribute('data-task-id', `${newTaskId}`)
