@@ -1,6 +1,6 @@
 {
     "code-runner.executorMap": {
-        "python": "D:\\Desarrollo_WEB\\Personal-Projects\\ToDo_APP\\ToDoApp\\Scripts\\activate && python -u",
+        "python": "W:\\Documents\\Desarrollo_WEB\\Personal-Projects\\Python\\ToDo_APP\\ToDoApp\\Scripts\\activate && python -u",
         }
     
     }
